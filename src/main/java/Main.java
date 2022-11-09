@@ -17,8 +17,9 @@ public class Main {
 
             switch (opcao){
                 case 1: armazenararNumeros(lista);
-                return;
+                break;
                 case 2:  gerarNumerosAleatorios(lista);
+                break;
                 case 3: Fachada.menuOrdenacao();
                      int opcoesOrdenacao = leitor.nextInt();
                      ordenador(opcoesOrdenacao, lista);
@@ -33,7 +34,7 @@ public class Main {
      * @param lista
      */
     private static void armazenararNumeros(List<Integer> lista){
-        Scanner leitor = new Scanner(System.in);
+         Scanner leitor = new Scanner(System.in);
         while(lista.size() <= 19){
             if(lista.size() == 0){
                 System.out.println("Digite um número: ");
@@ -42,10 +43,6 @@ public class Main {
             }
            lista.add(leitor.nextInt());
         }
-        Fachada.listarOpcoes();
-        int opcoesOrdenacao = leitor.nextInt();
-        ordenador(opcoesOrdenacao, lista);
-        leitor.close();
         return;
     }
 
@@ -72,18 +69,25 @@ public class Main {
      * @param lista
      */
     private static void ordenador(int opcao, List<Integer> lista){
-        switch (opcao){
-            case 1: BubbleSort.BubbleSort(lista, lista.size());
-            Listador.listar(lista);
-            return;
-            case 2: InsertionSort.insertionSort(lista);
-                Listador.listar(lista);
-            return;
-            case 3: SelectionSort.SelectionSort(lista);
-                Listador.listar(lista);
+        if (!lista.isEmpty()) {
+            switch (opcao) {
+                case 1:
+                    BubbleSort.BubbleSort(lista, lista.size());
+                    Listador.listar(lista);
+                    return;
+                case 2:
+                    InsertionSort.insertionSort(lista);
+                    Listador.listar(lista);
+                    return;
+                case 3:
+                    SelectionSort.SelectionSort(lista);
+                    Listador.listar(lista);
+                    return;
+            }
+        } else {
+            System.out.println("Lista está vazia");
             return;
         }
-
     }
 
 }
